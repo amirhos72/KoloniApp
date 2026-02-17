@@ -33,43 +33,43 @@ const Explore: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'Posts' | 'Reels'>('Reels');
 
   return (
-    <div className="pb-24 pt-6 min-h-screen text-gray-900 dark:text-white">
+    <div className="pb-28 pt-6 min-h-screen text-gray-900 dark:text-white">
       {/* Search Bar */}
       <div className="px-4 mb-6">
         <div className="relative group">
-          <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 z-10 group-hover:text-gold transition-colors duration-300" />
+          <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400 z-10" />
           <input 
             type="text" 
             placeholder="Search" 
-            className="w-full bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 text-gray-900 dark:text-white pl-12 pr-4 py-3.5 rounded-full text-sm focus:outline-none focus:bg-white/20 dark:focus:bg-white/10 focus:border-gold/50 focus:shadow-[0_0_20px_rgba(191,166,104,0.1)] placeholder-gray-500 shadow-inner transition-all duration-300"
+            className="w-full bg-white/40 dark:bg-[#1c1c1e]/60 backdrop-blur-[30px] border border-white/40 dark:border-white/10 text-gray-900 dark:text-white pl-12 pr-4 py-4 rounded-[1.5rem] text-[15px] focus:outline-none focus:bg-white/60 dark:focus:bg-[#1c1c1e]/80 placeholder-gray-500 shadow-sm transition-all duration-300"
           />
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex px-8 mb-4 border-b border-white/20 dark:border-white/10">
+      <div className="flex px-8 mb-4">
          <button 
-           className={`flex-1 pb-3 text-sm font-medium transition-all text-center relative ${
-             activeTab === 'Posts' ? 'text-gold' : 'text-gray-500 dark:text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 hover:bg-white/10 dark:hover:bg-white/5 rounded-t-lg'
+           className={`flex-1 pb-3 text-sm font-bold transition-all text-center relative ${
+             activeTab === 'Posts' ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-500'
            }`}
            onClick={() => setActiveTab('Posts')}
          >
            Posts
-           {activeTab === 'Posts' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold mx-auto w-1/2 shadow-[0_0_10px_rgba(191,166,104,0.8)] animate-pulse"></div>}
+           {activeTab === 'Posts' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-black dark:bg-white mx-auto w-8 rounded-full"></div>}
          </button>
          <button 
-           className={`flex-1 pb-3 text-sm font-medium transition-all text-center relative ${
-             activeTab === 'Reels' ? 'text-gold' : 'text-gray-500 dark:text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 hover:bg-white/10 dark:hover:bg-white/5 rounded-t-lg'
+           className={`flex-1 pb-3 text-sm font-bold transition-all text-center relative ${
+             activeTab === 'Reels' ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-500'
            }`}
            onClick={() => setActiveTab('Reels')}
          >
            Reels
-           {activeTab === 'Reels' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold mx-auto w-1/2 shadow-[0_0_10px_rgba(191,166,104,0.8)] animate-pulse"></div>}
+           {activeTab === 'Reels' && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-black dark:bg-white mx-auto w-8 rounded-full"></div>}
          </button>
       </div>
 
       {/* Grid Content */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-1 px-1">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-0.5 px-0.5">
         {REELS.map((reel) => (
           <ReelItem key={reel.id} reel={reel} />
         ))}

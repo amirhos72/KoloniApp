@@ -9,27 +9,23 @@ const Profile: React.FC = () => {
   const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
 
   return (
-    <div className="pb-24 min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
+    <div className="pb-32 min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
       {/* Header & Cover */}
       <div className="relative">
-        {/* Top Bar - No background as requested */}
-        <div className="absolute top-0 left-0 right-0 z-20 p-4 flex justify-end items-center">
-           
-           <div className="flex gap-2">
+        <div className="absolute top-4 right-4 z-20 flex gap-3">
              <button 
                onClick={toggleTheme}
-               className="w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-black/20 backdrop-blur-3xl rounded-full border border-white/20 dark:border-white/10 hover:bg-white/40 dark:hover:bg-black/40 transition-all duration-300 active:scale-90 shadow-lg"
+               className="w-10 h-10 flex items-center justify-center bg-white/30 dark:bg-black/30 backdrop-blur-[40px] rounded-full border border-white/30 dark:border-white/10 hover:bg-white/50 dark:hover:bg-black/50 transition-all duration-300 active:scale-95 shadow-lg"
              >
                {theme === 'dark' ? <Sun className="w-5 h-5 text-gold" /> : <Moon className="w-5 h-5 text-gray-800" />}
              </button>
-             <button className="w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-black/20 backdrop-blur-3xl rounded-full border border-white/20 dark:border-white/10 hover:bg-white/40 dark:hover:bg-black/40 transition-all duration-300 active:scale-90 shadow-lg">
+             <button className="w-10 h-10 flex items-center justify-center bg-white/30 dark:bg-black/30 backdrop-blur-[40px] rounded-full border border-white/30 dark:border-white/10 hover:bg-white/50 dark:hover:bg-black/50 transition-all duration-300 active:scale-95 shadow-lg">
                <Menu className="w-5 h-5 text-gray-900 dark:text-white" />
              </button>
-           </div>
         </div>
 
         {/* Cover Image */}
-        <div className="h-48 w-full relative bg-gray-200 dark:bg-gray-900">
+        <div className="h-56 w-full relative bg-gray-200 dark:bg-gray-900">
           {!isCoverLoaded && (
             <div className="absolute inset-0 flex items-center justify-center">
                <Loader2 className="w-8 h-8 text-gold animate-spin" />
@@ -41,22 +37,15 @@ const Profile: React.FC = () => {
             onLoad={() => setIsCoverLoaded(true)}
             className={`w-full h-full object-cover opacity-80 transition-opacity duration-500 ${isCoverLoaded ? 'opacity-80' : 'opacity-0'}`} 
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#f0f2f5] via-transparent to-white/60 dark:from-black dark:via-transparent dark:to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f2f2f7]/10 via-transparent to-[#f2f2f7] dark:from-black/10 dark:via-transparent dark:to-black" />
         </div>
       </div>
 
       {/* Profile Info Section */}
-      <div className="px-4 relative z-10 flex flex-col items-center -mt-20">
+      <div className="px-4 relative z-10 flex flex-col items-center -mt-24">
         {/* Avatar */}
         <div className="relative mb-3 group cursor-pointer z-10">
-          {/* Animated Glow Background */}
-          <div className="absolute inset-0 bg-gold/40 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-125"></div>
-          
-          {/* Rotating Ring */}
-          <div className="absolute -inset-2 rounded-full border border-gold/30 border-dashed opacity-0 group-hover:opacity-100 transition-all duration-700 rotate-0 group-hover:rotate-180 scale-100 group-hover:scale-105"></div>
-
-          {/* Main Avatar Container */}
-          <div className="w-28 h-28 rounded-full border-4 border-white/40 dark:border-white/10 overflow-hidden relative z-10 bg-white/20 dark:bg-white/5 backdrop-blur-xl shadow-2xl transition-all duration-500 ease-out group-hover:scale-105 group-hover:border-gold/50 group-hover:shadow-[0_0_30px_rgba(191,166,104,0.4)]">
+          <div className="w-32 h-32 rounded-full border-4 border-[#f2f2f7] dark:border-black overflow-hidden relative z-10 bg-white dark:bg-black shadow-2xl">
              {!isAvatarLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-800 z-20">
                   <Loader2 className="w-6 h-6 text-gold animate-spin" />
@@ -72,94 +61,82 @@ const Profile: React.FC = () => {
              ) : (
                 <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-gray-400 dark:text-white/20">N</div>
              )}
-             
-             {/* Reflection Overlay */}
-             <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
           </div>
-          
-          {/* VIP/Badge placeholder */}
-          <div className="absolute bottom-1 right-1 z-20 bg-white dark:bg-white rounded-full w-6 h-6 flex items-center justify-center border-2 border-white dark:border-black shadow-lg transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">
-             <div className="w-3 h-3 bg-black rounded-full"></div>
+          <div className="absolute bottom-2 right-2 z-20 bg-blue-500 rounded-full w-7 h-7 flex items-center justify-center border-4 border-[#f2f2f7] dark:border-black shadow-sm">
+             <div className="w-2 h-2 bg-white rounded-full"></div>
           </div>
         </div>
 
         {/* Name & Handle */}
-        <h2 className="text-2xl font-bold mb-0.5 drop-shadow-sm cursor-default text-gray-900 dark:text-white">{CURRENT_USER.name}</h2>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mb-6 font-medium cursor-pointer hover:text-gold transition-colors">{CURRENT_USER.handle}</p>
+        <h2 className="text-3xl font-bold mb-0.5 text-gray-900 dark:text-white">{CURRENT_USER.name}</h2>
+        <p className="text-gray-500 dark:text-gray-400 text-sm mb-6 font-medium">@{CURRENT_USER.handle}</p>
 
-        {/* Stats - Vertical Dividers */}
-        <div className="flex items-center justify-center w-full max-w-xs mb-8">
-          <div className="flex flex-col items-center flex-1 cursor-pointer group py-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300">
+        {/* Stats Container - Glassy Pill */}
+        <div className="flex items-center justify-around w-full max-w-sm mb-8 bg-white/40 dark:bg-[#1c1c1e]/60 backdrop-blur-[30px] rounded-[2rem] py-4 px-2 border border-white/40 dark:border-white/10 shadow-sm">
+          <div className="flex flex-col items-center flex-1 cursor-pointer group">
             <span className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-gold transition-colors">{CURRENT_USER.stats.posts}</span>
-            <span className="text-xs text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">Posts</span>
+            <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Posts</span>
           </div>
           <div className="w-px h-8 bg-gray-300 dark:bg-white/10"></div>
-          <div className="flex flex-col items-center flex-1 cursor-pointer group py-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300">
+          <div className="flex flex-col items-center flex-1 cursor-pointer group">
             <span className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-gold transition-colors">{CURRENT_USER.stats.followers}</span>
-            <span className="text-xs text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">Followers</span>
+            <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Followers</span>
           </div>
           <div className="w-px h-8 bg-gray-300 dark:bg-white/10"></div>
-          <div className="flex flex-col items-center flex-1 cursor-pointer group py-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300">
+          <div className="flex flex-col items-center flex-1 cursor-pointer group">
             <span className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-gold transition-colors">{CURRENT_USER.stats.following}</span>
-            <span className="text-xs text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">Following</span>
+            <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Following</span>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-3 w-full mb-8">
-          <button className="flex-1 bg-gold/80 text-black font-bold py-3.5 rounded-2xl shadow-[0_4px_20px_rgba(191,166,104,0.3)] hover:bg-[#d4c08a] hover:shadow-[0_4px_30px_rgba(191,166,104,0.5)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.98] backdrop-blur-md border border-white/20">
+        <div className="flex gap-3 w-full mb-8 max-w-sm">
+          <button className="flex-1 bg-[#bfa668] text-black font-bold py-4 rounded-[1.5rem] shadow-[0_8px_30px_rgba(191,166,104,0.3)] hover:bg-[#d4c08a] hover:scale-[1.02] transition-all duration-300 active:scale-95">
             Edit Profile
           </button>
-          <button className="w-14 flex items-center justify-center rounded-2xl bg-white/20 dark:bg-white/5 backdrop-blur-xl border border-white/30 dark:border-white/10 text-gold hover:bg-white/40 dark:hover:bg-white/10 hover:border-gold/50 hover:text-black dark:hover:text-white hover:scale-105 transition-all duration-300 active:scale-[0.98] shadow-lg group">
-            <Wallet className="w-6 h-6 drop-shadow-sm group-hover:rotate-12 transition-transform duration-300" />
+          <button className="w-16 flex items-center justify-center rounded-[1.5rem] bg-white/40 dark:bg-[#1c1c1e]/60 backdrop-blur-[30px] border border-white/40 dark:border-white/10 text-gray-900 dark:text-white hover:bg-white/60 dark:hover:bg-white/10 hover:scale-105 transition-all duration-300 active:scale-95 shadow-sm">
+            <Wallet className="w-6 h-6" />
           </button>
         </div>
 
         {/* Highlights */}
-        <div className="w-full mb-8">
-           <div className="flex flex-col items-start gap-2 group cursor-pointer">
-              <div className="w-20 h-20 rounded-[1.5rem] border-2 border-dashed border-gray-300 dark:border-white/20 flex items-center justify-center bg-white/20 dark:bg-white/5 backdrop-blur-lg group-hover:border-gold/50 group-hover:bg-white/30 dark:group-hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
-                  <Plus className="w-8 h-8 text-gray-400 dark:text-white/40 group-hover:text-gold transition-all duration-300 group-hover:rotate-90 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="w-full mb-8 pl-2">
+           <div className="flex flex-col items-center gap-2 group cursor-pointer w-fit">
+              <div className="w-[4.5rem] h-[4.5rem] rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center bg-white/40 dark:bg-white/5 backdrop-blur-md relative overflow-hidden">
+                  <Plus className="w-6 h-6 text-gray-500 dark:text-gray-400" />
               </div>
-              <span className="text-xs text-gray-500 dark:text-gray-400 font-medium ml-6 group-hover:text-black dark:group-hover:text-white transition-colors">New</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">New</span>
            </div>
         </div>
 
         {/* Tabs */}
-        <div className="w-full border-b border-white/20 dark:border-white/10">
-           <div className="flex justify-between items-center px-2">
-             {['Posts', 'Reels', 'About', 'Purchase'].map((tab, idx) => (
-               <button 
-                 key={tab}
-                 className={`pb-3 text-sm font-medium transition-all relative px-2 ${
-                   idx === 0 
-                     ? 'text-gold' 
-                     : 'text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-white/5 rounded-t-lg'
-                 }`}
-               >
-                 {tab}
-                 {idx === 0 && (
-                   <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold shadow-[0_0_10px_rgba(191,166,104,0.6)] animate-pulse"></div>
-                 )}
-               </button>
-             ))}
+        <div className="w-full border-b border-gray-200 dark:border-white/10 mb-1">
+           <div className="flex justify-around items-center">
+             <button className="pb-3 border-b-2 border-black dark:border-white text-black dark:text-white">
+                <Grid className="w-6 h-6" />
+             </button>
+             <button className="pb-3 border-b-2 border-transparent text-gray-400">
+                <PlayCircle className="w-6 h-6" />
+             </button>
+             <button className="pb-3 border-b-2 border-transparent text-gray-400">
+                <ShoppingBag className="w-6 h-6" />
+             </button>
            </div>
         </div>
       </div>
       
       {/* Grid */}
-      <div className="grid grid-cols-3 gap-0.5 mt-0.5 px-0.5">
-          {/* Empty state placeholder */}
-          <div className="aspect-square bg-white/20 dark:bg-white/[0.03] backdrop-blur-md border border-white/20 dark:border-white/[0.02] hover:bg-white/30 dark:hover:bg-white/10 transition-colors cursor-pointer group flex items-center justify-center">
-             <Plus className="text-gray-400 dark:text-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
-          <div className="aspect-square bg-white/20 dark:bg-white/[0.03] backdrop-blur-md border border-white/20 dark:border-white/[0.02] hover:bg-white/30 dark:hover:bg-white/10 transition-colors cursor-pointer group flex items-center justify-center">
-             <Plus className="text-gray-400 dark:text-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
-          <div className="aspect-square bg-white/20 dark:bg-white/[0.03] backdrop-blur-md border border-white/20 dark:border-white/[0.02] hover:bg-white/30 dark:hover:bg-white/10 transition-colors cursor-pointer group flex items-center justify-center">
-             <Plus className="text-gray-400 dark:text-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
+      <div className="grid grid-cols-3 gap-0.5">
+          {[1,2,3,4,5,6,7,8,9].map(i => (
+             <div key={i} className="aspect-square bg-gray-200 dark:bg-[#1c1c1e] cursor-pointer hover:opacity-90 transition-opacity relative group">
+                {/* Simulated content */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="bg-black/20 backdrop-blur-sm rounded-full p-2">
+                        <Plus className="w-5 h-5 text-white" />
+                    </div>
+                </div>
+             </div>
+          ))}
       </div>
     </div>
   );

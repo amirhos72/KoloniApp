@@ -7,7 +7,7 @@ import { Event } from '../types';
 const AttendeeAvatar: React.FC<{ src: string }> = ({ src }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   return (
-    <div className="w-6 h-6 rounded-full border border-white/40 dark:border-white/10 overflow-hidden ring-1 ring-white/20 dark:ring-black/20 transform transition-all duration-300 hover:scale-125 hover:z-20 hover:ring-gold/50 relative bg-gray-200 dark:bg-gray-800">
+    <div className="w-7 h-7 rounded-full border-2 border-white dark:border-[#1c1c1e] overflow-hidden transform transition-all duration-300 hover:scale-125 hover:z-20 relative bg-gray-200 dark:bg-gray-800">
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-200 dark:bg-white/20 flex items-center justify-center">
            <Loader2 className="w-3 h-3 text-gold animate-spin" />
@@ -28,9 +28,9 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
-    <div className="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden mb-8 group border border-white/30 dark:border-white/10 bg-white/20 dark:bg-white/[0.05] backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] transition-all duration-500 ease-out hover:shadow-[0_25px_50px_-12px_rgba(191,166,104,0.2)] hover:border-gold/30 hover:-translate-y-2">
+    <div className="relative w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-8 group border border-white/40 dark:border-white/10 bg-white/40 dark:bg-[#1c1c1e]/60 backdrop-blur-[50px] shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition-all duration-500 ease-out hover:scale-[1.02]">
       {/* Image Container with Zoom & Rotate */}
-      <div className="absolute inset-0 overflow-hidden bg-gray-200 dark:bg-gray-900 rounded-[2rem]">
+      <div className="absolute inset-0 overflow-hidden bg-gray-200 dark:bg-gray-900 rounded-[2.5rem]">
         {!isImageLoaded && (
           <div className="absolute inset-0 bg-gray-200 dark:bg-white/5 flex items-center justify-center">
             <Loader2 className="w-8 h-8 text-gold animate-spin" />
@@ -42,31 +42,31 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
           onLoad={() => setIsImageLoaded(true)}
           className={`w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110 group-hover:rotate-1 ${isImageLoaded ? 'opacity-90' : 'opacity-0'}`} 
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 dark:to-black/90 group-hover:to-black transition-all duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/90 transition-all duration-500" />
       </div>
 
       {/* Date Badge - Top Left */}
       <div className="absolute top-6 left-6 z-20">
-         <div className="bg-[#bfa668]/80 backdrop-blur-xl rounded-2xl w-16 h-16 flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/20 dark:border-white/10 transition-all duration-500 group-hover:bg-[#d4c08a] group-hover:shadow-[0_0_30px_rgba(191,166,104,0.4)] group-hover:scale-110 group-hover:-rotate-6">
-            <span className="text-xl font-bold text-black leading-none mb-1">{event.date.day}</span>
-            <span className="text-[10px] font-bold text-black/80 uppercase tracking-widest">{event.date.month}</span>
+         <div className="bg-white/30 dark:bg-black/30 backdrop-blur-xl rounded-[1.2rem] w-16 h-16 flex flex-col items-center justify-center shadow-lg border border-white/30 dark:border-white/10 transition-all duration-500 group-hover:bg-gold/80 group-hover:border-gold/50">
+            <span className="text-xl font-bold text-white leading-none mb-1 shadow-black/50 drop-shadow-sm">{event.date.day}</span>
+            <span className="text-[10px] font-bold text-white/90 uppercase tracking-widest drop-shadow-sm">{event.date.month}</span>
          </div>
       </div>
 
       {/* Attendees - Top Right */}
       <div className="absolute top-6 right-6 z-20 transition-all duration-500 group-hover:-translate-y-1">
-        <div className="bg-white/40 dark:bg-black/40 backdrop-blur-xl rounded-full py-1.5 pl-1.5 pr-3 flex items-center border border-white/30 dark:border-white/10 shadow-lg cursor-pointer transition-all duration-300 group-hover:bg-white/60 dark:group-hover:bg-black/60 group-hover:border-gold/40 group-hover:shadow-[0_0_20px_rgba(191,166,104,0.2)]">
-          <div className="flex -space-x-2 transition-all duration-500 group-hover:space-x-[-2px]">
+        <div className="bg-white/20 dark:bg-black/40 backdrop-blur-md rounded-full py-1.5 pl-1.5 pr-3 flex items-center border border-white/30 dark:border-white/10 shadow-lg">
+          <div className="flex -space-x-2.5">
             {event.attendees.avatars.map((avatar, i) => (
               <AttendeeAvatar key={i} src={avatar} />
             ))}
           </div>
-          <span className="text-[10px] font-bold ml-2 text-gray-900 dark:text-white/90 group-hover:text-gold transition-colors">+{event.attendees.count}</span>
+          <span className="text-[10px] font-bold ml-2 text-white shadow-black/50 drop-shadow-sm">+{event.attendees.count}</span>
         </div>
       </div>
 
       {/* Bottom Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+      <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
         <div className="flex justify-between items-end gap-4 transform transition-transform duration-500 group-hover:-translate-y-2">
            <div className="flex-1">
              {/* Location Reveal */}
@@ -75,10 +75,10 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
                 <span className="truncate">{event.location}</span>
              </div>
 
-             <h3 className="text-2xl font-bold text-white leading-tight mb-2 drop-shadow-lg transition-colors duration-300 group-hover:text-[#f0e6d2]">
+             <h3 className="text-3xl font-bold text-white leading-none mb-3 drop-shadow-lg tracking-tight">
                {event.title}
              </h3>
-             <div className="flex items-center text-white/90 hover:text-white transition-colors text-xs font-semibold tracking-wide uppercase cursor-pointer group/btn w-fit">
+             <div className="flex items-center text-white/80 hover:text-white transition-colors text-xs font-semibold tracking-wide uppercase cursor-pointer group/btn w-fit">
                <span className="border-b border-transparent group-hover/btn:border-gold pb-0.5 transition-all">View Details</span>
                <ChevronRight className="w-4 h-4 ml-1 transition-transform duration-300 group-hover/btn:translate-x-1 text-gold" />
              </div>
@@ -89,20 +89,17 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
                e.stopPropagation();
                setIsSaved(!isSaved);
              }}
-             className={`min-w-[48px] h-[48px] rounded-full backdrop-blur-3xl border flex items-center justify-center transition-all duration-500 shadow-[0_4px_15px_rgba(0,0,0,0.3)] active:scale-90 group/bookmark relative overflow-hidden ${
+             className={`min-w-[56px] h-[56px] rounded-full backdrop-blur-[20px] border flex items-center justify-center transition-all duration-500 shadow-xl active:scale-90 group/bookmark ${
                isSaved 
-                 ? 'bg-gold border-gold scale-110 shadow-[0_0_25px_rgba(191,166,104,0.6)]' 
-                 : 'bg-white/20 dark:bg-white/10 border-white/30 dark:border-white/20 group-hover:bg-white/30 dark:group-hover:bg-white/20 group-hover:border-gold/50 group-hover:shadow-[0_0_20px_rgba(191,166,104,0.2)]'
+                 ? 'bg-gold border-gold scale-110' 
+                 : 'bg-white/20 dark:bg-black/30 border-white/30 dark:border-white/20 hover:bg-white/30'
              }`}
            >
-              {/* Internal glow for non-saved state */}
-              {!isSaved && <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />}
-              
               <Bookmark 
-                className={`w-5 h-5 transition-all duration-300 relative z-10 ${
+                className={`w-6 h-6 transition-all duration-300 ${
                   isSaved 
                     ? 'fill-black text-black' 
-                    : 'text-white group-hover:text-gold group-hover:scale-110'
+                    : 'text-white'
                 }`} 
               />
            </button>
@@ -114,17 +111,17 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
 
 const Events: React.FC = () => {
   return (
-    <div className="pb-24 pt-4 min-h-screen text-gray-900 dark:text-white px-4">
+    <div className="pb-32 pt-28 min-h-screen text-gray-900 dark:text-white px-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8 sticky top-0 z-30 py-4 -mx-4 px-4 bg-white/30 dark:bg-black/30 backdrop-blur-3xl border-b border-white/20 dark:border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:shadow-none transition-all duration-300">
-        <h1 className="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-white dark:to-gray-400">Events</h1>
-        <button className="text-gold w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-white/5 rounded-xl border border-white/20 dark:border-white/10 backdrop-blur-xl shadow-lg hover:bg-white/40 dark:hover:bg-white/10 hover:border-gold/30 hover:shadow-[0_0_15px_rgba(191,166,104,0.3)] hover:rotate-180 transition-all duration-500 active:scale-90">
+      <div className="fixed top-4 left-4 right-4 z-40 bg-white/50 dark:bg-[#1c1c1e]/70 backdrop-blur-[50px] saturate-150 border border-white/40 dark:border-white/10 px-6 h-16 rounded-[2rem] flex items-center justify-between shadow-sm">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Events</h1>
+        <button className="text-gold w-10 h-10 flex items-center justify-center bg-black/5 dark:bg-white/10 rounded-full hover:bg-black/10 dark:hover:bg-white/20 transition-all duration-300 active:scale-95">
           <SlidersHorizontal className="w-5 h-5" />
         </button>
       </div>
 
       {/* Events List */}
-      <div className="flex flex-col">
+      <div className="flex flex-col pt-2">
         {EVENTS.map(event => (
           <EventCard key={event.id} event={event} />
         ))}

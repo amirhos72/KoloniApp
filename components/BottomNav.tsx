@@ -24,53 +24,42 @@ const BottomNav: React.FC = () => {
   const getIconClass = (route: string) => 
     `relative z-10 w-6 h-6 transition-all duration-500 ease-out ${
       isActive(route) 
-        ? 'text-gold drop-shadow-[0_0_12px_rgba(191,166,104,0.8)] scale-110' 
-        : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-white group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]'
+        ? 'text-gold drop-shadow-[0_0_15px_rgba(191,166,104,0.9)] scale-110' 
+        : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white group-hover:scale-110'
     }`;
 
   const getContainerClass = (route: string) =>
-    `flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300 group relative overflow-hidden ${
+    `flex items-center justify-center w-14 h-14 rounded-full transition-all duration-300 group relative overflow-hidden ${
       isActive(route) 
-        ? 'bg-white/20 dark:bg-white/10 backdrop-blur-xl border border-white/30 dark:border-gold/30 shadow-[0_0_20px_rgba(191,166,104,0.15)]' 
-        : 'hover:bg-white/10 dark:hover:bg-white/5 hover:backdrop-blur-md hover:border hover:border-white/20 dark:hover:border-white/10 hover:shadow-[0_0_15px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:-translate-y-1.5 active:scale-90 active:translate-y-0'
+        ? 'bg-white/40 dark:bg-white/10 backdrop-blur-3xl border border-white/50 dark:border-white/20 shadow-[0_4px_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.15)]' 
+        : 'hover:bg-white/20 dark:hover:bg-white/5 hover:backdrop-blur-xl hover:-translate-y-1 active:scale-95'
     }`;
 
-  // Internal glow effect for glass reflection
-  const Reflection = () => (
-    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 dark:via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-  );
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/20 dark:bg-black/20 backdrop-blur-3xl border-t border-white/20 dark:border-white/10 px-6 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] flex justify-between items-center z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] dark:shadow-2xl transition-colors duration-500">
-      {/* Glossy overlay on the bar itself */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none opacity-50"></div>
-
-      <Link to="/" className={getContainerClass('/')}>
-        <Reflection />
-        <ChevronUp className={getIconClass('/')} strokeWidth={2} />
-      </Link>
-      
-      <Link to="/explore" className={getContainerClass('/explore')}>
-        <Reflection />
-        <ReelsIcon className={getIconClass('/explore')} />
-      </Link>
-      
-      <Link to="/create" className={getContainerClass('/create')}>
-        <Reflection />
-        <div className={`transition-transform duration-500 ${isActive('/create') ? 'rotate-90' : 'group-hover:rotate-90'}`}>
-          <Plus className={getIconClass('/create')} strokeWidth={2} />
-        </div>
-      </Link>
-      
-      <Link to="/events" className={getContainerClass('/events')}>
-        <Reflection />
-        <EventsIcon className={getIconClass('/events')} />
-      </Link>
-      
-      <Link to="/profile" className={getContainerClass('/profile')}>
-        <Reflection />
-        <User className={getIconClass('/profile')} strokeWidth={2} />
-      </Link>
+    <div className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-2 pointer-events-none">
+      <div className="mx-auto max-w-sm bg-white/30 dark:bg-[#1a1a1a]/40 backdrop-blur-[50px] saturate-150 border border-white/40 dark:border-white/10 rounded-[2.5rem] px-6 py-3 flex justify-between items-center shadow-[0_20px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-auto">
+        <Link to="/" className={getContainerClass('/')}>
+          <ChevronUp className={getIconClass('/')} strokeWidth={2.5} />
+        </Link>
+        
+        <Link to="/explore" className={getContainerClass('/explore')}>
+          <ReelsIcon className={getIconClass('/explore')} />
+        </Link>
+        
+        <Link to="/create" className={getContainerClass('/create')}>
+          <div className={`transition-transform duration-500 ${isActive('/create') ? 'rotate-90' : 'group-hover:rotate-90'}`}>
+            <Plus className={getIconClass('/create')} strokeWidth={2.5} />
+          </div>
+        </Link>
+        
+        <Link to="/events" className={getContainerClass('/events')}>
+          <EventsIcon className={getIconClass('/events')} />
+        </Link>
+        
+        <Link to="/profile" className={getContainerClass('/profile')}>
+          <User className={getIconClass('/profile')} strokeWidth={2.5} />
+        </Link>
+      </div>
     </div>
   );
 };
