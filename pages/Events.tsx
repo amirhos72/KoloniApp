@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SlidersHorizontal, ChevronRight, Bookmark, MapPin } from 'lucide-react';
+import { SlidersHorizontal, ChevronRight, Bookmark, MapPin, Loader2 } from 'lucide-react';
 import { EVENTS } from '../constants';
 import { Event } from '../types';
 
@@ -8,7 +8,11 @@ const AttendeeAvatar: React.FC<{ src: string }> = ({ src }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   return (
     <div className="w-6 h-6 rounded-full border border-white/40 dark:border-white/10 overflow-hidden ring-1 ring-white/20 dark:ring-black/20 transform transition-all duration-300 hover:scale-125 hover:z-20 hover:ring-gold/50 relative bg-gray-200 dark:bg-gray-800">
-      {!isLoaded && <div className="absolute inset-0 bg-gray-200 dark:bg-white/20 animate-pulse" />}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gray-200 dark:bg-white/20 flex items-center justify-center">
+           <Loader2 className="w-3 h-3 text-gold animate-spin" />
+        </div>
+      )}
       <img 
         src={src} 
         alt="" 
@@ -27,7 +31,11 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
     <div className="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden mb-8 group border border-white/40 dark:border-white/10 bg-white/40 dark:bg-white/[0.03] backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] transition-all duration-500 ease-out hover:shadow-[0_25px_50px_-12px_rgba(191,166,104,0.3)] hover:border-gold/40 hover:-translate-y-2">
       {/* Image Container with Zoom & Rotate */}
       <div className="absolute inset-0 overflow-hidden bg-gray-200 dark:bg-gray-900 rounded-[2rem]">
-        {!isImageLoaded && <div className="absolute inset-0 bg-gray-200 dark:bg-white/5 animate-pulse" />}
+        {!isImageLoaded && (
+          <div className="absolute inset-0 bg-gray-200 dark:bg-white/5 flex items-center justify-center">
+            <Loader2 className="w-8 h-8 text-gold animate-spin" />
+          </div>
+        )}
         <img 
           src={event.image} 
           alt={event.title} 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Bell, Send, MoreHorizontal, Heart, MessageCircle, Share2, Bookmark } from 'lucide-react';
+import { Bell, Send, MoreHorizontal, Heart, MessageCircle, Share2, Bookmark, Loader2 } from 'lucide-react';
 import { POSTS } from '../constants';
 import { Post } from '../types';
 
@@ -27,7 +27,11 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3 cursor-pointer group/user">
             <div className="w-9 h-9 rounded-full overflow-hidden border border-white/50 dark:border-white/10 bg-gray-200 dark:bg-gray-800 ring-2 ring-transparent dark:ring-white/5 transition-transform duration-300 group-hover/user:scale-105 group-hover/user:ring-gold/50 relative">
-              {!isAvatarLoaded && <div className="absolute inset-0 bg-gray-200 dark:bg-white/10 animate-pulse" />}
+              {!isAvatarLoaded && (
+                <div className="absolute inset-0 bg-gray-200 dark:bg-white/10 flex items-center justify-center">
+                  <Loader2 className="w-3 h-3 text-gold animate-spin" />
+                </div>
+              )}
               <img 
                 src={post.user.avatar} 
                 alt={post.user.name} 
@@ -45,7 +49,11 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
 
       {/* Image */}
       <div className="w-full aspect-[4/5] bg-gray-200 dark:bg-black/50 mb-3 relative overflow-hidden bg-gray-100 dark:bg-gray-900 rounded-2xl mx-auto w-[calc(100%-2rem)] shadow-inner">
-        {!isImageLoaded && <div className="absolute inset-0 bg-gray-200 dark:bg-white/5 animate-pulse" />}
+        {!isImageLoaded && (
+          <div className="absolute inset-0 bg-gray-200 dark:bg-white/5 flex items-center justify-center">
+            <Loader2 className="w-8 h-8 text-gold animate-spin" />
+          </div>
+        )}
         <img 
           src={post.image} 
           alt="Post content" 

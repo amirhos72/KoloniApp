@@ -1,6 +1,33 @@
 import React, { useState } from 'react';
-import { Search, Play } from 'lucide-react';
+import { Search, Play, Loader2 } from 'lucide-react';
 import { REELS } from '../constants';
+
+const ReelItem: React.FC<{ reel: typeof REELS[0] }> = ({ reel }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  return (
+    <div className="relative aspect-[9/16] bg-gray-200 dark:bg-gray-900 overflow-hidden group cursor-pointer">
+      {!isLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Loader2 className="w-6 h-6 text-gold animate-spin" />
+        </div>
+      )}
+      <img 
+        src={reel.image} 
+        alt="" 
+        onLoad={() => setIsLoaded(true)}
+        className={`w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110 ${isLoaded ? 'opacity-90' : 'opacity-0'}`} 
+      />
+      
+      {/* Play icon overlay */}
+      <div className="absolute bottom-2 left-2 bg-black/20 backdrop-blur-md p-1 rounded-full border border-white/20 group-hover:bg-black/50 group-hover:scale-110 transition-all duration-300">
+        <Play className="w-3 h-3 text-white fill-white drop-shadow-md" />
+      </div>
+      
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
+    </div>
+  );
+};
 
 const Explore: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'Posts' | 'Reels'>('Reels');
@@ -44,20 +71,7 @@ const Explore: React.FC = () => {
       {/* Grid Content */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-1 px-1">
         {REELS.map((reel) => (
-          <div key={reel.id} className="relative aspect-[9/16] bg-gray-200 dark:bg-gray-900 overflow-hidden group cursor-pointer">
-            <img 
-              src={reel.image} 
-              alt="" 
-              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110" 
-            />
-            
-            {/* Play icon overlay */}
-            <div className="absolute bottom-2 left-2 bg-black/20 backdrop-blur-md p-1 rounded-full border border-white/20 group-hover:bg-black/50 group-hover:scale-110 transition-all duration-300">
-              <Play className="w-3 h-3 text-white fill-white drop-shadow-md" />
-            </div>
-            
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
-          </div>
+          <ReelItem key={reel.id} reel={reel} />
         ))}
       </div>
     </div>

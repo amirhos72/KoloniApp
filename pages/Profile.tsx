@@ -1,10 +1,12 @@
-import React from 'react';
-import { Menu, Wallet, Plus, Grid, PlayCircle, Info, ShoppingBag, Sun, Moon } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, Wallet, Plus, Grid, PlayCircle, Info, ShoppingBag, Sun, Moon, Loader2 } from 'lucide-react';
 import { CURRENT_USER } from '../constants';
 import { useTheme } from '../context/ThemeContext';
 
 const Profile: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+  const [isCoverLoaded, setIsCoverLoaded] = useState(false);
+  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
 
   return (
     <div className="pb-24 min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
@@ -27,8 +29,18 @@ const Profile: React.FC = () => {
         </div>
 
         {/* Cover Image */}
-        <div className="h-48 w-full relative">
-          <img src={CURRENT_USER.coverImage} alt="Cover" className="w-full h-full object-cover opacity-80" />
+        <div className="h-48 w-full relative bg-gray-200 dark:bg-gray-900">
+          {!isCoverLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center">
+               <Loader2 className="w-8 h-8 text-gold animate-spin" />
+            </div>
+          )}
+          <img 
+            src={CURRENT_USER.coverImage} 
+            alt="Cover" 
+            onLoad={() => setIsCoverLoaded(true)}
+            className={`w-full h-full object-cover opacity-80 transition-opacity duration-500 ${isCoverLoaded ? 'opacity-80' : 'opacity-0'}`} 
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-[#f0f2f5] via-transparent to-white/60 dark:from-black dark:via-transparent dark:to-black" />
         </div>
       </div>
@@ -45,8 +57,18 @@ const Profile: React.FC = () => {
 
           {/* Main Avatar Container */}
           <div className="w-28 h-28 rounded-full border-4 border-white/60 dark:border-black overflow-hidden relative z-10 bg-gray-200 dark:bg-gray-800 shadow-2xl transition-all duration-500 ease-out group-hover:scale-105 group-hover:border-gold/50 group-hover:shadow-[0_0_30px_rgba(191,166,104,0.4)]">
+             {!isAvatarLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-800 z-20">
+                  <Loader2 className="w-6 h-6 text-gold animate-spin" />
+                </div>
+             )}
              {CURRENT_USER.avatar ? (
-                <img src={CURRENT_USER.avatar} alt="Avatar" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
+                <img 
+                  src={CURRENT_USER.avatar} 
+                  alt="Avatar" 
+                  onLoad={() => setIsAvatarLoaded(true)}
+                  className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 ${isAvatarLoaded ? 'opacity-100' : 'opacity-0'}`} 
+                />
              ) : (
                 <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-gray-400 dark:text-white/20">N</div>
              )}
