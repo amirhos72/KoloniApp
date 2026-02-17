@@ -20,7 +20,7 @@ const ReelItem: React.FC<{ reel: typeof REELS[0] }> = ({ reel }) => {
       />
       
       {/* Play icon overlay */}
-      <div className="absolute bottom-2 left-2 bg-black/20 backdrop-blur-md p-1 rounded-full border border-white/20 group-hover:bg-black/50 group-hover:scale-110 transition-all duration-300">
+      <div className="absolute bottom-2 left-2 bg-black/30 backdrop-blur-md p-1.5 rounded-full border border-white/20 group-hover:bg-black/50 group-hover:scale-110 transition-all duration-300">
         <Play className="w-3 h-3 text-white fill-white drop-shadow-md" />
       </div>
       
@@ -41,16 +41,16 @@ const Explore: React.FC = () => {
           <input 
             type="text" 
             placeholder="Search" 
-            className="w-full bg-white/20 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 text-gray-900 dark:text-white pl-12 pr-4 py-3.5 rounded-full text-sm focus:outline-none focus:bg-white/30 dark:focus:bg-white/10 focus:border-gold/50 focus:shadow-[0_0_20px_rgba(191,166,104,0.1)] placeholder-gray-500 shadow-[inset_0_2px_10px_rgba(0,0,0,0.02)] dark:shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)] transition-all duration-300"
+            className="w-full bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 text-gray-900 dark:text-white pl-12 pr-4 py-3.5 rounded-full text-sm focus:outline-none focus:bg-white/20 dark:focus:bg-white/10 focus:border-gold/50 focus:shadow-[0_0_20px_rgba(191,166,104,0.1)] placeholder-gray-500 shadow-inner transition-all duration-300"
           />
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex px-8 mb-4 border-b border-white/20 dark:border-white/5">
+      <div className="flex px-8 mb-4 border-b border-white/20 dark:border-white/10">
          <button 
            className={`flex-1 pb-3 text-sm font-medium transition-all text-center relative ${
-             activeTab === 'Posts' ? 'text-gold' : 'text-gray-500 dark:text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 hover:bg-white/20 dark:hover:bg-white/5 rounded-t-lg'
+             activeTab === 'Posts' ? 'text-gold' : 'text-gray-500 dark:text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 hover:bg-white/10 dark:hover:bg-white/5 rounded-t-lg'
            }`}
            onClick={() => setActiveTab('Posts')}
          >
@@ -59,7 +59,7 @@ const Explore: React.FC = () => {
          </button>
          <button 
            className={`flex-1 pb-3 text-sm font-medium transition-all text-center relative ${
-             activeTab === 'Reels' ? 'text-gold' : 'text-gray-500 dark:text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 hover:bg-white/20 dark:hover:bg-white/5 rounded-t-lg'
+             activeTab === 'Reels' ? 'text-gold' : 'text-gray-500 dark:text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 hover:bg-white/10 dark:hover:bg-white/5 rounded-t-lg'
            }`}
            onClick={() => setActiveTab('Reels')}
          >

@@ -28,7 +28,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
-    <div className="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden mb-8 group border border-white/40 dark:border-white/10 bg-white/40 dark:bg-white/[0.03] backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] transition-all duration-500 ease-out hover:shadow-[0_25px_50px_-12px_rgba(191,166,104,0.3)] hover:border-gold/40 hover:-translate-y-2">
+    <div className="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden mb-8 group border border-white/30 dark:border-white/10 bg-white/20 dark:bg-white/[0.05] backdrop-blur-3xl shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] transition-all duration-500 ease-out hover:shadow-[0_25px_50px_-12px_rgba(191,166,104,0.2)] hover:border-gold/30 hover:-translate-y-2">
       {/* Image Container with Zoom & Rotate */}
       <div className="absolute inset-0 overflow-hidden bg-gray-200 dark:bg-gray-900 rounded-[2rem]">
         {!isImageLoaded && (
@@ -42,12 +42,12 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
           onLoad={() => setIsImageLoaded(true)}
           className={`w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110 group-hover:rotate-1 ${isImageLoaded ? 'opacity-90' : 'opacity-0'}`} 
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/80 dark:to-black/90 group-hover:to-black transition-all duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 dark:to-black/90 group-hover:to-black transition-all duration-500" />
       </div>
 
       {/* Date Badge - Top Left */}
       <div className="absolute top-6 left-6 z-20">
-         <div className="bg-[#bfa668]/90 backdrop-blur-sm rounded-2xl w-16 h-16 flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] border border-white/20 dark:border-white/10 transition-all duration-500 group-hover:bg-[#d4c08a] group-hover:shadow-[0_0_30px_rgba(191,166,104,0.6)] group-hover:scale-110 group-hover:-rotate-6">
+         <div className="bg-[#bfa668]/80 backdrop-blur-xl rounded-2xl w-16 h-16 flex flex-col items-center justify-center shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-white/20 dark:border-white/10 transition-all duration-500 group-hover:bg-[#d4c08a] group-hover:shadow-[0_0_30px_rgba(191,166,104,0.4)] group-hover:scale-110 group-hover:-rotate-6">
             <span className="text-xl font-bold text-black leading-none mb-1">{event.date.day}</span>
             <span className="text-[10px] font-bold text-black/80 uppercase tracking-widest">{event.date.month}</span>
          </div>
@@ -55,7 +55,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
 
       {/* Attendees - Top Right */}
       <div className="absolute top-6 right-6 z-20 transition-all duration-500 group-hover:-translate-y-1">
-        <div className="bg-white/60 dark:bg-black/40 backdrop-blur-xl rounded-full py-1.5 pl-1.5 pr-3 flex items-center border border-white/30 dark:border-white/10 shadow-lg cursor-pointer transition-all duration-300 group-hover:bg-white/80 dark:group-hover:bg-black/70 group-hover:border-gold/40 group-hover:shadow-[0_0_20px_rgba(191,166,104,0.2)]">
+        <div className="bg-white/40 dark:bg-black/40 backdrop-blur-xl rounded-full py-1.5 pl-1.5 pr-3 flex items-center border border-white/30 dark:border-white/10 shadow-lg cursor-pointer transition-all duration-300 group-hover:bg-white/60 dark:group-hover:bg-black/60 group-hover:border-gold/40 group-hover:shadow-[0_0_20px_rgba(191,166,104,0.2)]">
           <div className="flex -space-x-2 transition-all duration-500 group-hover:space-x-[-2px]">
             {event.attendees.avatars.map((avatar, i) => (
               <AttendeeAvatar key={i} src={avatar} />
@@ -89,7 +89,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
                e.stopPropagation();
                setIsSaved(!isSaved);
              }}
-             className={`min-w-[48px] h-[48px] rounded-full backdrop-blur-2xl border flex items-center justify-center transition-all duration-500 shadow-[0_4px_15px_rgba(0,0,0,0.3)] active:scale-90 group/bookmark relative overflow-hidden ${
+             className={`min-w-[48px] h-[48px] rounded-full backdrop-blur-3xl border flex items-center justify-center transition-all duration-500 shadow-[0_4px_15px_rgba(0,0,0,0.3)] active:scale-90 group/bookmark relative overflow-hidden ${
                isSaved 
                  ? 'bg-gold border-gold scale-110 shadow-[0_0_25px_rgba(191,166,104,0.6)]' 
                  : 'bg-white/20 dark:bg-white/10 border-white/30 dark:border-white/20 group-hover:bg-white/30 dark:group-hover:bg-white/20 group-hover:border-gold/50 group-hover:shadow-[0_0_20px_rgba(191,166,104,0.2)]'
@@ -116,9 +116,9 @@ const Events: React.FC = () => {
   return (
     <div className="pb-24 pt-4 min-h-screen text-gray-900 dark:text-white px-4">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8 sticky top-0 z-30 py-4 -mx-4 px-4 bg-white/5 dark:bg-black/20 backdrop-blur-3xl border-b border-white/10 dark:border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:shadow-2xl transition-all duration-300">
+      <div className="flex items-center justify-between mb-8 sticky top-0 z-30 py-4 -mx-4 px-4 bg-white/30 dark:bg-black/30 backdrop-blur-3xl border-b border-white/20 dark:border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:shadow-none transition-all duration-300">
         <h1 className="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-white dark:to-gray-400">Events</h1>
-        <button className="text-gold p-2.5 bg-white/10 dark:bg-white/5 rounded-xl border border-white/20 dark:border-white/10 backdrop-blur-xl shadow-lg hover:bg-white/30 dark:hover:bg-white/10 hover:border-gold/30 hover:shadow-[0_0_15px_rgba(191,166,104,0.3)] hover:rotate-180 transition-all duration-500 active:scale-90">
+        <button className="text-gold w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-white/5 rounded-xl border border-white/20 dark:border-white/10 backdrop-blur-xl shadow-lg hover:bg-white/40 dark:hover:bg-white/10 hover:border-gold/30 hover:shadow-[0_0_15px_rgba(191,166,104,0.3)] hover:rotate-180 transition-all duration-500 active:scale-90">
           <SlidersHorizontal className="w-5 h-5" />
         </button>
       </div>

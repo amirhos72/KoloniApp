@@ -31,8 +31,8 @@ const BottomNav: React.FC = () => {
   const getContainerClass = (route: string) =>
     `flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300 group relative overflow-hidden ${
       isActive(route) 
-        ? 'bg-white/20 dark:bg-white/10 backdrop-blur-md border border-white/40 dark:border-gold/30 shadow-[0_0_20px_rgba(191,166,104,0.2)]' 
-        : 'hover:bg-white/10 dark:hover:bg-white/5 hover:backdrop-blur-sm hover:border hover:border-white/30 dark:hover:border-white/10 hover:shadow-[0_0_15px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:-translate-y-1.5 active:scale-90 active:translate-y-0'
+        ? 'bg-white/20 dark:bg-white/10 backdrop-blur-xl border border-white/30 dark:border-gold/30 shadow-[0_0_20px_rgba(191,166,104,0.15)]' 
+        : 'hover:bg-white/10 dark:hover:bg-white/5 hover:backdrop-blur-md hover:border hover:border-white/20 dark:hover:border-white/10 hover:shadow-[0_0_15px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:-translate-y-1.5 active:scale-90 active:translate-y-0'
     }`;
 
   // Internal glow effect for glass reflection
@@ -41,7 +41,10 @@ const BottomNav: React.FC = () => {
   );
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/10 dark:bg-black/40 backdrop-blur-3xl border-t border-white/20 dark:border-white/5 px-6 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] flex justify-between items-center z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-10px_40px_rgba(0,0,0,0.5)] transition-colors duration-500">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/20 dark:bg-black/20 backdrop-blur-3xl border-t border-white/20 dark:border-white/10 px-6 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] flex justify-between items-center z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] dark:shadow-2xl transition-colors duration-500">
+      {/* Glossy overlay on the bar itself */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none opacity-50"></div>
+
       <Link to="/" className={getContainerClass('/')}>
         <Reflection />
         <ChevronUp className={getIconClass('/')} strokeWidth={2} />

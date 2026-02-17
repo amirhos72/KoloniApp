@@ -18,11 +18,11 @@ const Profile: React.FC = () => {
            <div className="flex gap-2">
              <button 
                onClick={toggleTheme}
-               className="p-2.5 bg-white/10 dark:bg-black/20 backdrop-blur-3xl rounded-full border border-white/20 dark:border-white/10 hover:bg-white/30 dark:hover:bg-black/40 transition-all duration-300 active:scale-90"
+               className="w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-black/20 backdrop-blur-3xl rounded-full border border-white/20 dark:border-white/10 hover:bg-white/40 dark:hover:bg-black/40 transition-all duration-300 active:scale-90 shadow-lg"
              >
                {theme === 'dark' ? <Sun className="w-5 h-5 text-gold" /> : <Moon className="w-5 h-5 text-gray-800" />}
              </button>
-             <button className="p-2.5 bg-white/10 dark:bg-black/20 backdrop-blur-3xl rounded-full border border-white/20 dark:border-white/10 hover:bg-white/30 dark:hover:bg-black/40 transition-all duration-300 active:scale-90">
+             <button className="w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-black/20 backdrop-blur-3xl rounded-full border border-white/20 dark:border-white/10 hover:bg-white/40 dark:hover:bg-black/40 transition-all duration-300 active:scale-90 shadow-lg">
                <Menu className="w-5 h-5 text-gray-900 dark:text-white" />
              </button>
            </div>
@@ -56,7 +56,7 @@ const Profile: React.FC = () => {
           <div className="absolute -inset-2 rounded-full border border-gold/30 border-dashed opacity-0 group-hover:opacity-100 transition-all duration-700 rotate-0 group-hover:rotate-180 scale-100 group-hover:scale-105"></div>
 
           {/* Main Avatar Container */}
-          <div className="w-28 h-28 rounded-full border-4 border-white/60 dark:border-black overflow-hidden relative z-10 bg-gray-200 dark:bg-gray-800 shadow-2xl transition-all duration-500 ease-out group-hover:scale-105 group-hover:border-gold/50 group-hover:shadow-[0_0_30px_rgba(191,166,104,0.4)]">
+          <div className="w-28 h-28 rounded-full border-4 border-white/40 dark:border-white/10 overflow-hidden relative z-10 bg-white/20 dark:bg-white/5 backdrop-blur-xl shadow-2xl transition-all duration-500 ease-out group-hover:scale-105 group-hover:border-gold/50 group-hover:shadow-[0_0_30px_rgba(191,166,104,0.4)]">
              {!isAvatarLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-800 z-20">
                   <Loader2 className="w-6 h-6 text-gold animate-spin" />
@@ -107,10 +107,10 @@ const Profile: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="flex gap-3 w-full mb-8">
-          <button className="flex-1 bg-gold/90 text-black font-bold py-3.5 rounded-2xl shadow-[0_4px_20px_rgba(191,166,104,0.3)] hover:bg-[#d4c08a] hover:shadow-[0_4px_30px_rgba(191,166,104,0.5)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.98] backdrop-blur-sm">
+          <button className="flex-1 bg-gold/80 text-black font-bold py-3.5 rounded-2xl shadow-[0_4px_20px_rgba(191,166,104,0.3)] hover:bg-[#d4c08a] hover:shadow-[0_4px_30px_rgba(191,166,104,0.5)] hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.98] backdrop-blur-md border border-white/20">
             Edit Profile
           </button>
-          <button className="w-14 flex items-center justify-center rounded-2xl bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/40 dark:border-white/10 text-gold hover:bg-white/50 dark:hover:bg-white/10 hover:border-gold/50 hover:text-black dark:hover:text-white hover:scale-105 transition-all duration-300 active:scale-[0.98] shadow-lg group">
+          <button className="w-14 flex items-center justify-center rounded-2xl bg-white/20 dark:bg-white/5 backdrop-blur-xl border border-white/30 dark:border-white/10 text-gold hover:bg-white/40 dark:hover:bg-white/10 hover:border-gold/50 hover:text-black dark:hover:text-white hover:scale-105 transition-all duration-300 active:scale-[0.98] shadow-lg group">
             <Wallet className="w-6 h-6 drop-shadow-sm group-hover:rotate-12 transition-transform duration-300" />
           </button>
         </div>
@@ -118,7 +118,7 @@ const Profile: React.FC = () => {
         {/* Highlights */}
         <div className="w-full mb-8">
            <div className="flex flex-col items-start gap-2 group cursor-pointer">
-              <div className="w-20 h-20 rounded-[1.5rem] border-2 border-dashed border-gray-300 dark:border-white/20 flex items-center justify-center bg-white/30 dark:bg-white/5 backdrop-blur-md group-hover:border-gold/50 group-hover:bg-white/40 dark:group-hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
+              <div className="w-20 h-20 rounded-[1.5rem] border-2 border-dashed border-gray-300 dark:border-white/20 flex items-center justify-center bg-white/20 dark:bg-white/5 backdrop-blur-lg group-hover:border-gold/50 group-hover:bg-white/30 dark:group-hover:bg-white/10 transition-all duration-300 relative overflow-hidden">
                   <Plus className="w-8 h-8 text-gray-400 dark:text-white/40 group-hover:text-gold transition-all duration-300 group-hover:rotate-90 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -127,7 +127,7 @@ const Profile: React.FC = () => {
         </div>
 
         {/* Tabs */}
-        <div className="w-full border-b border-white/30 dark:border-white/5">
+        <div className="w-full border-b border-white/20 dark:border-white/10">
            <div className="flex justify-between items-center px-2">
              {['Posts', 'Reels', 'About', 'Purchase'].map((tab, idx) => (
                <button 
@@ -151,13 +151,13 @@ const Profile: React.FC = () => {
       {/* Grid */}
       <div className="grid grid-cols-3 gap-0.5 mt-0.5 px-0.5">
           {/* Empty state placeholder */}
-          <div className="aspect-square bg-white/30 dark:bg-white/[0.03] backdrop-blur-md border border-white/20 dark:border-white/[0.02] hover:bg-white/40 dark:hover:bg-white/10 transition-colors cursor-pointer group flex items-center justify-center">
+          <div className="aspect-square bg-white/20 dark:bg-white/[0.03] backdrop-blur-md border border-white/20 dark:border-white/[0.02] hover:bg-white/30 dark:hover:bg-white/10 transition-colors cursor-pointer group flex items-center justify-center">
              <Plus className="text-gray-400 dark:text-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
-          <div className="aspect-square bg-white/30 dark:bg-white/[0.03] backdrop-blur-md border border-white/20 dark:border-white/[0.02] hover:bg-white/40 dark:hover:bg-white/10 transition-colors cursor-pointer group flex items-center justify-center">
+          <div className="aspect-square bg-white/20 dark:bg-white/[0.03] backdrop-blur-md border border-white/20 dark:border-white/[0.02] hover:bg-white/30 dark:hover:bg-white/10 transition-colors cursor-pointer group flex items-center justify-center">
              <Plus className="text-gray-400 dark:text-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
-          <div className="aspect-square bg-white/30 dark:bg-white/[0.03] backdrop-blur-md border border-white/20 dark:border-white/[0.02] hover:bg-white/40 dark:hover:bg-white/10 transition-colors cursor-pointer group flex items-center justify-center">
+          <div className="aspect-square bg-white/20 dark:bg-white/[0.03] backdrop-blur-md border border-white/20 dark:border-white/[0.02] hover:bg-white/30 dark:hover:bg-white/10 transition-colors cursor-pointer group flex items-center justify-center">
              <Plus className="text-gray-400 dark:text-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
       </div>
