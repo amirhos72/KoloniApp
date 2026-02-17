@@ -41,7 +41,7 @@ const BottomNav: React.FC = () => {
   );
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/10 dark:bg-black/40 backdrop-blur-3xl border-t border-white/20 dark:border-white/5 px-6 py-4 flex justify-between items-center z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-10px_40px_rgba(0,0,0,0.5)] transition-colors duration-500">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/10 dark:bg-black/40 backdrop-blur-3xl border-t border-white/20 dark:border-white/5 px-6 pt-4 pb-[calc(1rem+env(safe-area-inset-bottom))] flex justify-between items-center z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-10px_40px_rgba(0,0,0,0.5)] transition-colors duration-500">
       <Link to="/" className={getContainerClass('/')}>
         <Reflection />
         <ChevronUp className={getIconClass('/')} strokeWidth={2} />
